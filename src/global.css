@@ -1,0 +1,28 @@
+body {
+	background-color: #121212;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+	font-size: 72px; /* Large text size */
+	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
+	background-clip: text;
+	color: transparent;
+	font-weight: bold;
+	text-align: center;
+}
+
+h2 {
+	font-size: 52px; /* Large text size */
+	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
+	background-clip: text;
+	color: transparent;
+	font-weight: bold;
+	text-align: center;
+}
+
+p {
+	font-size: 24px;
+	font-weight: bold;
+	color: white;
+}
