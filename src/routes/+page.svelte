@@ -3,22 +3,25 @@
 	import ImageGrid from '$lib/components/ImageGrid.svelte';
 	import Socials from '$lib/components/Socials.svelte';
 	import ProvidenceRecord from '$lib/components/ProvidenceRecord.svelte';
-	let x = 1123;
-	let y = 2000;
+	import Minted from '$lib/components/Minted.svelte';
+	import Mint from '$lib/components/Mint.svelte';
 </script>
 
 <body>
-	<div class="flex">
-		<h1>Blockchain Butterflies</h1>
-		<p class="text">
-			A unique collection of colorful NFTs fluttering though the Ethereum Blockchain
-		</p>
-		<p class="text">{x}/{y} minted</p>
-		<Socials />
-	</div>
+	<h1>Blockchain Butterflies</h1>
+	<div class="flexRow">
+		<div class="flex left-text">
+			<p class="text">
+				A unique collection of colorful NFTs fluttering through the Ethereum Blockchain
+			</p>
+			<Minted />
+			<Mint />
+			<Socials />
+		</div>
 
-	<div class="flex">
-		<ImageGrid />
+		<div class="flex">
+			<ImageGrid />
+		</div>
 	</div>
 	<div class="flex">
 		<ProvidenceRecord />
@@ -32,8 +35,22 @@
 		align-items: center;
 		justify-content: center;
 	}
+	.flexRow {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
 
 	.text {
 		text-align: center;
+	}
+	.left-text {
+		margin-right: 30px;
+	}
+
+	@media (max-width: 900px) {
+		.flexRow {
+			flex-direction: column;
+		}
 	}
 </style>
