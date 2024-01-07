@@ -11,7 +11,7 @@
 	<div class="flex-row">
 		<div class="flex content-left">
 			<h1>Blockchain Butterflies</h1>
-			<div style="font-size: 3vw">
+			<div style="font-size: 2.8vw">
 				<span>By: </span>
 				<span class="by">Sean Demeritt</span>
 			</div>
