@@ -1,19 +1,20 @@
-import Web3 from 'web3';
+import { ethers } from 'ethers';
 import contractABI from '$lib/abi.json'; // Adjust the import path as needed
 import { mintedCount } from '$lib/store/mintedCount';
 
 export async function load() {
-	const web3 = new Web3('https://sepolia.infura.io/v3/55f68398841246c1bac9a528974889e7');
-	const contract = new web3.eth.Contract(
-		contractABI.abi,
-		'0x8545a272FAE7cdF7baB06844938d393BAeC639e6'
+	const provider = new ethers.JsonRpcProvider(
+		'https://sepolia.infura.io/v3/55f68398841246c1bac9a528974889e7'
 	);
+	const contractAddress = '0x8545a272FAE7cdF7baB06844938d393BAeC639e6';
+	const contract = new ethers.Contract(contractAddress, contractABI.abi, provider);
 
 	try {
-		const count: number = await contract.methods.currentTokenId().call();
-		mintedCount.set(count ?? 0);
+		const count = await contract.currentTokenId();
+		mintedCount.set(Number(count));
 		return {};
 	} catch (error) {
+		console.error('Error fetching minted count:', error);
 		return {};
 	}
 }

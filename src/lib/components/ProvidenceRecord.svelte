@@ -2,7 +2,7 @@
 	import { OPENSEA_BASE_URL, IPFS_BASE_URL } from '$lib/constants';
 	import { mintedCount } from '$lib/store/mintedCount';
 
-	$: mintedList = Array.from(Array(Number($mintedCount)).keys());
+	$: mintedList = Array.from(Array($mintedCount).keys());
 </script>
 
 <section class="provenance-header">

@@ -1,28 +1,26 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Web3, { Contract } from 'web3';
+	import { ethers } from 'ethers';
 	import contractABI from '../abi.json';
 
-	let web3: Web3;
-	let contract: Contract<typeof contractABI.abi>;
+	let provider: any;
+	let signer: any;
+	let contract: ethers.Contract;
 	let recipient: string = '';
 	let minting: boolean = false;
 
-	$: isEthAddress = isValidEthAddress(recipient);
+	$: isEthAddress = ethers.isAddress(recipient);
 
-	function isValidEthAddress(address: string) {
-		const regex = /^0x[a-fA-F0-9]{40}$/;
-		return regex.test(address);
-	}
 	onMount(() => {
-		web3 = new Web3(window.ethereum);
+		provider = new ethers.BrowserProvider(window.ethereum);
+		signer = provider.getSigner();
 		const contractAddress = '0x8545a272FAE7cdF7baB06844938d393BAeC639e6';
-		contract = new web3.eth.Contract(contractABI.abi, contractAddress);
+		contract = new ethers.Contract(contractAddress, contractABI.abi, signer);
 	});
 
 	const connectWallet = async () => {
 		try {
-			await window.ethereum.request({ method: 'eth_requestAccounts' });
+			await provider.send('eth_requestAccounts', []);
 		} catch (error) {
 			console.error('Error connecting to wallet:', error);
 		}
@@ -31,8 +29,8 @@
 	const mintNFT = async () => {
 		try {
 			minting = true;
-			const accounts = await web3.eth.getAccounts();
-			await contract.methods.mintTo(recipient).send({ from: accounts[0] });
+			const tx = await contract.mintTo(recipient);
+			await tx.wait();
 		} catch (error) {
 			console.error('Error minting NFT:', error);
 		} finally {
@@ -41,7 +39,7 @@
 	};
 </script>
 
-{#if web3}
+{#if ethers}
 	<div class="flex-row">
 		<input class="input-field" type="text" bind:value={recipient} placeholder="Recipient Address" />
 		<button
