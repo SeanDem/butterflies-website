@@ -20,7 +20,7 @@
 			const newRandomNumber = Math.floor(Math.random() * $mintedCount);
 			randomButterflyUrls[randomImgIndex].url = `${IPFS_BASE_URL}${newRandomNumber}.png`;
 			updateRandomImg();
-		}, 1000);
+		}, 700);
 	}
 
 	updateRandomImg();
