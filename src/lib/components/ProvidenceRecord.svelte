@@ -7,14 +7,18 @@
 
 <section class="provenance-header">
 	<h2>PROVENANCE RECORD</h2>
-	<p>Contract Details | 0x8545a272FAE7cdF7baB06844938d393BAeC639e6</p>
+	<p class="address-container bold word-wrap">
+		Contract Address: <span class="sub-header">
+			<span class="address">0x8545a272FAE7cdF7baB06844938d393BAeC639e6</span>
+		</span>
+	</p>
 </section>
 
 <div class="list-container">
 	<div class="sub-header-group">
-		<span class="sub-header">Butterfly ID</span>
-		<span class="sub-header">OpenSea Link</span>
-		<span class="sub-header">IPFS Link</span>
+		<span class="bold">ID</span>
+		<span class="bold">OpenSea</span>
+		<span class="bold">IPFS</span>
 	</div>
 	{#each mintedList as count (count)}
 		<div class="list-item">
@@ -37,6 +41,7 @@
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 15vw;
+		margin-bottom: 4px;
 	}
 
 	.sub-header {
@@ -45,9 +50,11 @@
 		color: transparent;
 		text-decoration: none;
 	}
+	.bold {
+		font-weight: bold;
+	}
 
 	.list-container {
-		color: white;
 		padding: 20px;
 	}
 
@@ -68,5 +75,9 @@
 	.total-count {
 		margin-top: 10px;
 		text-align: center;
+	}
+
+	h2 {
+		margin-top: 0;
 	}
 </style>

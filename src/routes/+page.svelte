@@ -13,7 +13,7 @@
 			<h1>Blockchain Butterflies</h1>
 			<Minted />
 			<div class="text">
-				<p>A unique collection of colorful NFTs fluttering through the Ethereum Blockchain</p>
+				A unique collection of colorful NFTs fluttering through the Ethereum Blockchain
 			</div>
 			<Mint />
 			<Socials />
@@ -31,6 +31,7 @@
 
 <style>
 	.text {
+		margin: 20px 10px;
 		text-align: center;
 	}
 	.content-left {
@@ -44,6 +45,9 @@
 	@media (max-width: 900px) {
 		.flex-row {
 			flex-direction: column;
+		}
+		.content-left {
+			margin-right: 0px;
 		}
 	}
 </style>

@@ -13,16 +13,11 @@ h2 {
 }
 
 h1 {
-	font-size: 72px;
+	font-size: 7vw;
 }
 
 h2 {
-	font-size: 52px;
-}
-
-p {
-	font-size: 18px;
-	color: white;
+	font-size: 48px;
 }
 
 .input-container {
@@ -31,7 +26,7 @@ p {
 }
 
 input {
-	height: 30px;
+	height: 25px;
 	width: 42ch;
 	padding: 10px;
 	margin: 10px 0;
@@ -39,18 +34,18 @@ input {
 	border-radius: 5px;
 	color: #ffffff;
 	background-color: #2a2a2a;
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .submit-button {
-	height: 56px;
+	height: 50px;
 	white-space: nowrap;
 	padding: 12px 18px;
 	border: none;
 	border-radius: 5px;
 	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
 	color: black;
-	font-size: 20px;
+	font-size: 18px;
 	cursor: pointer;
 	transition: background 0.3s ease;
 }
@@ -89,4 +84,21 @@ a:hover {
 
 div {
 	color: white;
+}
+
+p {
+	font-size: 18px;
+}
+@media (max-width: 900px) {
+	h1 {
+		font-size: 55x;
+	}
+
+	input {
+		width: 25ch;
+	}
+
+	p {
+		font-size: 14px;
+	}
 }
