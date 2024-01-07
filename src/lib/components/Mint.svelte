@@ -42,18 +42,18 @@
 </script>
 
 {#if web3}
-	<div class="flexrow">
-		<input type="text" bind:value={recipient} placeholder="Recipient Address" />
+	<div class="flex-row">
+		<input class="input-field" type="text" bind:value={recipient} placeholder="Recipient Address" />
 		<button
 			class="submit-button"
 			on:click={mintNFT}
 			disabled={minting || !recipient || !isEthAddress}
 			>{minting ? 'Minting...' : 'Mint NFT'}</button
 		>
-		{#if recipient && !isEthAddress}
-			<div class="error">Enter Valid ETH Address</div>
-		{/if}
 	</div>
+	{#if recipient && !isEthAddress}
+		<div class="error">Enter Valid ETH Address</div>
+	{/if}
 {:else}
 	<button class="submit-button" on:click={connectWallet}>Connect Wallet</button>
 {/if}
@@ -61,5 +61,9 @@
 <style>
 	.error {
 		color: rgb(255, 89, 89);
+	}
+
+	.input-field {
+		margin-right: 15px;
 	}
 </style>

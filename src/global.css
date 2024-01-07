@@ -43,7 +43,9 @@ input {
 }
 
 .submit-button {
-	padding: 10px 20px;
+	height: 44px;
+	white-space: nowrap;
+	padding: 10px 10px;
 	border: none;
 	border-radius: 5px;
 	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
