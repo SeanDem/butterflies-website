@@ -2,14 +2,12 @@
 	import { mintedCount } from '$lib/store/mintedCount';
 </script>
 
-<main>
-	{#if $mintedCount !== undefined}
-		<p class="minted">{$mintedCount} / 2000 minted</p>
-	{/if}
-</main>
+{#if $mintedCount !== undefined}
+	<p class="minted">{$mintedCount} / 2000 Minted</p>
+{/if}
 
 <style>
 	.minted {
-		font-size: 30px;
+		font-size: 34px;
 	}
 </style>

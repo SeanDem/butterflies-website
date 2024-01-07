@@ -11,6 +11,10 @@
 	<div class="flex-row">
 		<div class="flex content-left">
 			<h1>Blockchain Butterflies</h1>
+			<div style="font-size: 3vw">
+				<span>By: </span>
+				<span class="by">Sean Demeritt</span>
+			</div>
 			<Minted />
 			<div class="text">
 				A unique collection of colorful NFTs fluttering through the Ethereum Blockchain
@@ -30,6 +34,9 @@
 </body>
 
 <style>
+	.by {
+		font-weight: bold;
+	}
 	.text {
 		margin: 20px 10px;
 		text-align: center;
