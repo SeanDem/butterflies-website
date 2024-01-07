@@ -64,7 +64,7 @@
 			placeholder="Recipient Address"
 		/>
 		<div class="small-input">
-			<input class="mr-15 number-input" type="number" bind:value={numToMint} />
+			<input class="mr-15 number-input" max="20" min="0" type="number" bind:value={numToMint} />
 			<button
 				class="submit-button mint"
 				on:click={mintNFT}
