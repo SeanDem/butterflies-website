@@ -20,7 +20,6 @@
 
 			try {
 				const accounts = await provider.listAccounts();
-				console.log(accounts);
 				if (accounts.length > 0) {
 					recipient = accounts[0].address;
 				}
@@ -45,7 +44,7 @@
 	const mintNFT = async () => {
 		try {
 			minting = true;
-			const tx = await contract.mintTo(recipient);
+			const tx = await contract.mintNPublic(recipient, numToMint);
 			await tx.wait();
 		} catch (error) {
 			console.error('Error minting NFT:', error);

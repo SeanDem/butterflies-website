@@ -9,7 +9,7 @@ export async function load() {
 
 	try {
 		const count = await contract.currentTokenId();
-		mintedCount.set(Number(count));
+		mintedCount.set(Number(count) - 1);
 		return {};
 	} catch (error) {
 		console.error('Error fetching minted count:', error);

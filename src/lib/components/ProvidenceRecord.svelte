@@ -23,8 +23,8 @@
 	{#each mintedList as count (count)}
 		<div class="list-item">
 			<span>{count + 1}</span>
-			<a href={`${OPENSEA_BASE_URL}/${count + 1}`}>View OpenSea</a>
-			<a href={`${IPFS_BASE_URL}/${count + 1}.png`}>View IPFS</a>
+			<a href={`${OPENSEA_BASE_URL}${count + 1}`}>View OpenSea</a>
+			<a href={`${IPFS_BASE_URL}${count + 1}.png`}>View IPFS</a>
 		</div>
 	{/each}
 	<div class="total-count">Total Minted: {$mintedCount}</div>
