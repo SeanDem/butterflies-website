@@ -9,7 +9,7 @@
 
 <body>
 	<h1>Blockchain Butterflies</h1>
-	<div class="flexRow">
+	<div class="flex-row">
 		<div class="flex left-text">
 			<p class="text">
 				A unique collection of colorful NFTs fluttering through the Ethereum Blockchain
@@ -29,18 +29,6 @@
 </body>
 
 <style>
-	.flex {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-	.flexRow {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-	}
-
 	.text {
 		text-align: center;
 	}
@@ -49,7 +37,7 @@
 	}
 
 	@media (max-width: 900px) {
-		.flexRow {
+		.flex-row {
 			flex-direction: column;
 		}
 	}

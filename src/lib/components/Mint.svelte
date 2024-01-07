@@ -6,9 +6,14 @@
 	let web3: Web3;
 	let contract: Contract<typeof contractABI.abi>;
 	let recipient: string = '';
-	let mintAmount: number = 1;
 	let minting: boolean = false;
 
+	$: isEthAddress = isValidEthAddress(recipient);
+
+	function isValidEthAddress(address: string) {
+		const regex = /^0x[a-fA-F0-9]{40}$/;
+		return regex.test(address);
+	}
 	onMount(() => {
 		web3 = new Web3(window.ethereum);
 		const contractAddress = '0x8545a272FAE7cdF7baB06844938d393BAeC639e6';
@@ -36,16 +41,25 @@
 	};
 </script>
 
-<main>
-	{#if web3}
-		<div>
-			<input type="text" bind:value={recipient} placeholder="Recipient Address" />
-			<input type="number" bind:value={mintAmount} min="1" placeholder="Amount to Mint" />
-			<button on:click={mintNFT} disabled={minting || !recipient}
-				>{minting ? 'Minting...' : 'Mint NFT'}</button
-			>
-		</div>
-	{:else}
-		<button on:click={connectWallet}>Connect Wallet</button>
-	{/if}
-</main>
+{#if web3}
+	<div class="flexrow">
+		<input type="text" bind:value={recipient} placeholder="Recipient Address" />
+		<button
+			class="submit-button"
+			on:click={mintNFT}
+			disabled={minting || !recipient || !isEthAddress}
+			>{minting ? 'Minting...' : 'Mint NFT'}</button
+		>
+		{#if recipient && !isEthAddress}
+			<div class="error">Enter Valid ETH Address</div>
+		{/if}
+	</div>
+{:else}
+	<button class="submit-button" on:click={connectWallet}>Connect Wallet</button>
+{/if}
+
+<style>
+	.error {
+		color: rgb(255, 89, 89);
+	}
+</style>

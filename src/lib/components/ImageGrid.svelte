@@ -1,46 +1,52 @@
 <script lang="ts">
-	import { type ListBlobResultBlob } from '@vercel/blob';
+	import { IPFS_BASE_URL, OPENSEA_BASE_URL } from '$lib/constants';
 
-	const BASE_URL = 'https://ipfs.io/ipfs/QmUiqEwdFzHXw7bYBhsLKWBZYBrSSPEcV15g9LB2Gwrqby/';
-
-	let blobs: ListBlobResultBlob[] = [];
 	let randomButterflyUrls = getRandomUrls();
 
-	function getRandomUrls() {
+	function getRandomUrls(): { url: string; id: number }[] {
 		const urls = [];
 		for (let i = 0; i < 6; i++) {
-			const randomNumber = Math.floor(Math.random() * 2000);
-			const imageUrl = `${BASE_URL}${randomNumber}.png`;
-			urls.push(imageUrl);
+			const id = Math.floor(Math.random() * 2000);
+			const url = `${IPFS_BASE_URL}${id}.png`;
+			urls.push({ url, id });
 		}
 		return urls;
 	}
 
-	function updateRandomNumbers() {
-		setInterval(() => {
-			const newRandomNumber1 = Math.floor(Math.random() * 2000);
-			const newRandomNumber2 = Math.floor(Math.random() * 2000);
-			randomButterflyUrls[1] = `${BASE_URL}${newRandomNumber1}.png`;
-			randomButterflyUrls[4] = `${BASE_URL}${newRandomNumber2}.png`;
-		}, 2000);
+	function updateRandomNumber1() {
+		setTimeout(
+			() => {
+				const newRandomNumber = Math.floor(Math.random() * 2000);
+				randomButterflyUrls[1].url = `${IPFS_BASE_URL}${newRandomNumber}.png`;
+				updateRandomNumber1();
+			},
+			1000 + Math.floor(Math.random() * 2000)
+		);
 	}
 
-	updateRandomNumbers();
+	function updateRandomNumber4() {
+		setTimeout(
+			() => {
+				const newRandomNumber = Math.floor(Math.random() * 2000);
+				randomButterflyUrls[4].url = `${IPFS_BASE_URL}${newRandomNumber}.png`;
+				updateRandomNumber4();
+			},
+			1000 + Math.floor(Math.random() * 2000)
+		);
+	}
+	updateRandomNumber1();
+	updateRandomNumber4();
 </script>
 
 <div class="gallery">
 	{#each randomButterflyUrls as url, index (index)}
 		<div class="butterfly">
-			<img src={url} alt={`Butterfly ${index}`} />
+			<a href={`${OPENSEA_BASE_URL}${url.id}`} target="_blank">
+				<img src={url.url} alt={`Butterfly ${index}`} />
+			</a>
 		</div>
 	{/each}
 </div>
-
-{#if blobs.length > 1}
-	{#each blobs as blob, index (index)}
-		<div>{blob.url}</div>
-	{/each}
-{/if}
 
 <style>
 	.gallery {

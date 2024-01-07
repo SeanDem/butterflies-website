@@ -3,8 +3,8 @@ body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1 {
-	font-size: 72px; /* Large text size */
+h1,
+h2 {
 	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
 	background-clip: text;
 	color: transparent;
@@ -12,17 +12,80 @@ h1 {
 	text-align: center;
 }
 
+h1 {
+	font-size: 72px;
+}
+
 h2 {
-	font-size: 52px; /* Large text size */
-	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
-	background-clip: text;
-	color: transparent;
-	font-weight: bold;
-	text-align: center;
+	font-size: 52px;
 }
 
 p {
 	font-size: 18px;
 	font-weight: bold;
+	color: white;
+}
+
+.input-container {
+	text-align: center;
+	margin-top: 20px;
+}
+
+input {
+	width: 60%;
+	padding: 10px;
+	margin: 10px 0;
+	border: 2px solid #6efe8d;
+	border-radius: 5px;
+	color: #ffffff;
+	background-color: #2a2a2a;
+	font-size: 16px;
+}
+
+.submit-button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
+	color: black;
+	font-size: 16px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	cursor: pointer;
+	transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+	background: linear-gradient(to left, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
+}
+
+.submit-button:disabled {
+	background: #2a2a2a;
+}
+
+.flex {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+a {
+	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
+	background-clip: text;
+	color: transparent;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+div {
 	color: white;
 }

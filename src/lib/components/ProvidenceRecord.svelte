@@ -1,7 +1,7 @@
 <script>
+	import { OPENSEA_BASE_URL, IPFS_BASE_URL } from '$lib/constants';
 	import { mintedCount } from '$lib/store/mintedCount';
-	const OPENSEA_BASE_URL = 'https://testnets.opensea.io/collection/blockchain-butterflies';
-	const IPFS_BASE_URL = 'https://ipfs.io/ipfs/QmUiqEwdFzHXw7bYBhsLKWBZYBrSSPEcV15g9LB2Gwrqby/';
+
 	$: mintedList = Array.from(Array(Number($mintedCount)).keys());
 </script>
 
@@ -61,15 +61,8 @@
 	}
 
 	.list-item a {
-		background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
-		background-clip: text;
-		color: transparent;
 		text-decoration: none;
 		gap: 15vw;
-	}
-
-	.list-item a:hover {
-		text-decoration: underline;
 	}
 
 	.total-count {
