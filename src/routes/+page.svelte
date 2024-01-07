@@ -8,21 +8,22 @@
 </script>
 
 <body>
-	<h1>Blockchain Butterflies</h1>
 	<div class="flex-row">
-		<div class="flex left-text">
-			<p class="text">
-				A unique collection of colorful NFTs fluttering through the Ethereum Blockchain
-			</p>
+		<div class="flex content-left">
+			<h1>Blockchain Butterflies</h1>
 			<Minted />
+			<div class="text">
+				<p>A unique collection of colorful NFTs fluttering through the Ethereum Blockchain</p>
+			</div>
 			<Mint />
 			<Socials />
 		</div>
 
-		<div class="flex">
+		<div class="flex content-right">
 			<ImageGrid />
 		</div>
 	</div>
+
 	<div class="flex">
 		<ProvidenceRecord />
 	</div>
@@ -32,8 +33,12 @@
 	.text {
 		text-align: center;
 	}
-	.left-text {
+	.content-left {
 		margin-right: 30px;
+	}
+
+	.content-left h1 {
+		margin-bottom: 0px;
 	}
 
 	@media (max-width: 900px) {

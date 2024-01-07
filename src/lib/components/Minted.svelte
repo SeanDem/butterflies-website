@@ -4,6 +4,12 @@
 
 <main>
 	{#if $mintedCount !== undefined}
-		<p>{$mintedCount} / 2000</p>
+		<p class="minted">{$mintedCount} / 2000 minted</p>
 	{/if}
 </main>
+
+<style>
+	.minted {
+		font-size: 30px;
+	}
+</style>

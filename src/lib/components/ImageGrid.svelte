@@ -63,8 +63,8 @@
 	}
 
 	.butterfly img {
-		width: 170px;
-		height: 170px;
+		width: 11vw;
+		height: 11vw;
 		border-radius: 1rem;
 	}
 
