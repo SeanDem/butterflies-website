@@ -1,6 +1,7 @@
 interface EthereumProvider {
 	request: ({ method }: { method: string }) => Promise<any>;
 	ethereum: EthereumProvider;
+	on: (event: string, callback: (accounts: ethers.JsonRpcSigner[]) => void) => void;
 }
 
 declare global {

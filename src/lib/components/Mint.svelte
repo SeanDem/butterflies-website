@@ -10,14 +10,17 @@
 	let recipient: string = '';
 	let minting: boolean = false;
 	let numToMint: number = 1;
+	let network: ethers.Network;
 
 	$: isEthAddress = ethers.isAddress(recipient);
+	$: isSepolia = network && Number(network.chainId) === 11155111;
 
 	onMount(async () => {
 		if (window.ethereum) {
 			provider = new ethers.BrowserProvider(window.ethereum);
 			signer = await provider.getSigner();
-
+			setNetworkInfo();
+			setupEventListeners();
 			try {
 				const accounts = await provider.listAccounts();
 				if (accounts.length > 0) {
@@ -33,14 +36,6 @@
 		}
 	});
 
-	const connectWallet = async () => {
-		try {
-			await provider.send('eth_requestAccounts', []);
-		} catch (error) {
-			console.error('Error connecting to wallet:', error);
-		}
-	};
-
 	const mintNFT = async () => {
 		try {
 			minting = true;
@@ -50,6 +45,33 @@
 			console.error('Error minting NFT:', error);
 		} finally {
 			minting = false;
+		}
+	};
+
+	const connectWallet = async () => {
+		try {
+			await provider.send('eth_requestAccounts', []);
+			signer = await provider.getSigner();
+			contract = new ethers.Contract(CONTRACT_ADDRESS, contractABI.abi, signer);
+			setNetworkInfo();
+		} catch (error) {
+			console.error('Error connecting to wallet:', error);
+		}
+	};
+
+	const setupEventListeners = () => {
+		window.ethereum.on('chainChanged', setNetworkInfo);
+		window.ethereum.on('accountsChanged', handleAccountsChanged);
+	};
+
+	const setNetworkInfo = async () => {
+		provider = new ethers.BrowserProvider(window.ethereum);
+		network = await provider.getNetwork();
+	};
+
+	const handleAccountsChanged = async (accounts: ethers.JsonRpcSigner[]) => {
+		if (accounts.length > 0) {
+			recipient = accounts[0].address;
 		}
 	};
 </script>
@@ -67,13 +89,16 @@
 			<button
 				class="submit-button mint"
 				on:click={mintNFT}
-				disabled={minting || !recipient || !isEthAddress}
+				disabled={minting || !recipient || !isEthAddress || !isSepolia}
 				>{minting ? 'Minting...' : 'Mint NFT'}</button
 			>
 		</div>
 	</div>
 	{#if recipient && !isEthAddress}
 		<div class="error">Enter Valid ETH Address</div>
+	{/if}
+	{#if !isSepolia}
+		<div class="error">Connect to Sepolia Testnet</div>
 	{/if}
 {:else}
 	<button class="submit-button" on:click={connectWallet}>Connect Wallet</button>
