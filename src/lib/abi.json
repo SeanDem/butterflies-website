@@ -632,6 +632,24 @@
 					"type": "uint256"
 				}
 			],
+			"name": "mintNPublic",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "recipient",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "n",
+					"type": "uint256"
+				}
+			],
 			"name": "mintN",
 			"outputs": [],
 			"stateMutability": "nonpayable",

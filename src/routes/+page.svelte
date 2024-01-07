@@ -7,7 +7,7 @@
 	import Mint from '$lib/components/Mint.svelte';
 </script>
 
-<body>
+<body class="body">
 	<div class="flex-row">
 		<div class="flex content-left">
 			<h1>Blockchain Butterflies</h1>
@@ -34,12 +34,17 @@
 		margin: 20px 10px;
 		text-align: center;
 	}
-	.content-left {
-		margin-right: 30px;
+	.content-right {
+		margin: 30px;
 	}
 
 	.content-left h1 {
 		margin-bottom: 0px;
+		margin-top: 5px;
+	}
+
+	.body {
+		margin-top: 40px;
 	}
 
 	@media (max-width: 900px) {

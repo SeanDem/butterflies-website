@@ -1,13 +1,11 @@
 import { ethers } from 'ethers';
 import contractABI from '$lib/abi.json'; // Adjust the import path as needed
 import { mintedCount } from '$lib/store/mintedCount';
+import { CONTRACT_ADDRESS, RPC_PROVIDER } from '$lib/constants';
 
 export async function load() {
-	const provider = new ethers.JsonRpcProvider(
-		'https://sepolia.infura.io/v3/55f68398841246c1bac9a528974889e7'
-	);
-	const contractAddress = '0x8545a272FAE7cdF7baB06844938d393BAeC639e6';
-	const contract = new ethers.Contract(contractAddress, contractABI.abi, provider);
+	const provider = new ethers.JsonRpcProvider(RPC_PROVIDER);
+	const contract = new ethers.Contract(CONTRACT_ADDRESS, contractABI.abi, provider);
 
 	try {
 		const count = await contract.currentTokenId();

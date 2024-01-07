@@ -1,41 +1,29 @@
 <script lang="ts">
 	import { IPFS_BASE_URL, OPENSEA_BASE_URL } from '$lib/constants';
+	import { mintedCount } from '$lib/store/mintedCount';
 
 	let randomButterflyUrls = getRandomUrls();
-
+	const IMAGE_COUNT = 9;
 	function getRandomUrls(): { url: string; id: number }[] {
 		const urls = [];
-		for (let i = 0; i < 6; i++) {
-			const id = Math.floor(Math.random() * 2000);
+		for (let i = 0; i < IMAGE_COUNT; i++) {
+			const id = Math.floor(Math.random() * $mintedCount);
 			const url = `${IPFS_BASE_URL}${id}.png`;
 			urls.push({ url, id });
 		}
 		return urls;
 	}
 
-	function updateRandomNumber1() {
-		setTimeout(
-			() => {
-				const newRandomNumber = Math.floor(Math.random() * 2000);
-				randomButterflyUrls[1].url = `${IPFS_BASE_URL}${newRandomNumber}.png`;
-				updateRandomNumber1();
-			},
-			1000 + Math.floor(Math.random() * 2000)
-		);
+	function updateRandomImg() {
+		setTimeout(() => {
+			const randomImgIndex = Math.floor(Math.random() * IMAGE_COUNT);
+			const newRandomNumber = Math.floor(Math.random() * $mintedCount);
+			randomButterflyUrls[randomImgIndex].url = `${IPFS_BASE_URL}${newRandomNumber}.png`;
+			updateRandomImg();
+		}, 1000);
 	}
 
-	function updateRandomNumber4() {
-		setTimeout(
-			() => {
-				const newRandomNumber = Math.floor(Math.random() * 2000);
-				randomButterflyUrls[4].url = `${IPFS_BASE_URL}${newRandomNumber}.png`;
-				updateRandomNumber4();
-			},
-			1000 + Math.floor(Math.random() * 2000)
-		);
-	}
-	updateRandomNumber1();
-	updateRandomNumber4();
+	updateRandomImg();
 </script>
 
 <div class="gallery">
@@ -63,8 +51,8 @@
 	}
 
 	.butterfly img {
-		width: 11vw;
-		height: 11vw;
+		width: 12vw;
+		height: 12vw;
 		border-radius: 1rem;
 	}
 

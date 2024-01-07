@@ -1,21 +1,37 @@
 <script lang="ts">
+	import { BrowserProvider, ethers } from 'ethers';
 	import { onMount } from 'svelte';
-	import { ethers } from 'ethers';
 	import contractABI from '../abi.json';
+	import { CONTRACT_ADDRESS } from '../constants';
 
-	let provider: any;
-	let signer: any;
+	let provider: BrowserProvider;
+	let signer: ethers.JsonRpcSigner;
 	let contract: ethers.Contract;
 	let recipient: string = '';
 	let minting: boolean = false;
+	let numToMint: number = 1;
 
 	$: isEthAddress = ethers.isAddress(recipient);
 
-	onMount(() => {
-		provider = new ethers.BrowserProvider(window.ethereum);
-		signer = provider.getSigner();
-		const contractAddress = '0x8545a272FAE7cdF7baB06844938d393BAeC639e6';
-		contract = new ethers.Contract(contractAddress, contractABI.abi, signer);
+	onMount(async () => {
+		if (window.ethereum) {
+			provider = new ethers.BrowserProvider(window.ethereum);
+			signer = await provider.getSigner();
+
+			try {
+				const accounts = await provider.listAccounts();
+				console.log(accounts);
+				if (accounts.length > 0) {
+					recipient = accounts[0].address;
+				}
+			} catch (error) {
+				console.error('Error fetching accounts:', error);
+			}
+
+			contract = new ethers.Contract(CONTRACT_ADDRESS, contractABI.abi, signer);
+		} else {
+			console.error('Ethereum object not found, make sure MetaMask is installed.');
+		}
 	});
 
 	const connectWallet = async () => {
@@ -40,14 +56,22 @@
 </script>
 
 {#if ethers}
-	<div class="flex-row">
-		<input class="input-field" type="text" bind:value={recipient} placeholder="Recipient Address" />
-		<button
-			class="submit-button"
-			on:click={mintNFT}
-			disabled={minting || !recipient || !isEthAddress}
-			>{minting ? 'Minting...' : 'Mint NFT'}</button
-		>
+	<div class="flex-row wrap">
+		<input
+			class="mr-15 text-input"
+			type="text"
+			bind:value={recipient}
+			placeholder="Recipient Address"
+		/>
+		<div class="small-input">
+			<input class="mr-15 number-input" type="number" bind:value={numToMint} />
+			<button
+				class="submit-button mint"
+				on:click={mintNFT}
+				disabled={minting || !recipient || !isEthAddress}
+				>{minting ? 'Minting...' : 'Mint NFT'}</button
+			>
+		</div>
 	</div>
 	{#if recipient && !isEthAddress}
 		<div class="error">Enter Valid ETH Address</div>
@@ -61,7 +85,20 @@
 		color: rgb(255, 89, 89);
 	}
 
-	.input-field {
+	.mr-15 {
 		margin-right: 15px;
+	}
+
+	.wrap {
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 900px) {
+		.small-input {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 	}
 </style>

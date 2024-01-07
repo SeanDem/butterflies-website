@@ -1,5 +1,5 @@
 <script>
-	import { OPENSEA_BASE_URL, IPFS_BASE_URL } from '$lib/constants';
+	import { CONTRACT_ADDRESS, IPFS_BASE_URL, OPENSEA_BASE_URL } from '$lib/constants';
 	import { mintedCount } from '$lib/store/mintedCount';
 
 	$: mintedList = Array.from(Array($mintedCount).keys());
@@ -9,14 +9,14 @@
 	<h2>PROVENANCE RECORD</h2>
 	<p class="address-container bold word-wrap">
 		Contract Address: <span class="sub-header">
-			<span class="address">0x8545a272FAE7cdF7baB06844938d393BAeC639e6</span>
+			<span class="address">{CONTRACT_ADDRESS}</span>
 		</span>
 	</p>
 </section>
 
 <div class="list-container">
 	<div class="sub-header-group">
-		<span class="bold">ID</span>
+		<span class="bold">Butterfly ID</span>
 		<span class="bold">OpenSea</span>
 		<span class="bold">IPFS</span>
 	</div>
@@ -75,9 +75,5 @@
 	.total-count {
 		margin-top: 10px;
 		text-align: center;
-	}
-
-	h2 {
-		margin-top: 0;
 	}
 </style>

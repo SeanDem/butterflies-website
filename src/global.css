@@ -3,8 +3,7 @@ body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1,
-h2 {
+h1 {
 	background: linear-gradient(to right, #fc7784, #f9a84c, #ffff71, #6efe8d, #4daffa);
 	background-clip: text;
 	color: transparent;
@@ -25,9 +24,21 @@ h2 {
 	margin-top: 20px;
 }
 
-input {
+.text-input {
 	height: 25px;
 	width: 42ch;
+	padding: 10px;
+	margin: 10px 0;
+	border: 2px solid #6efe8d;
+	border-radius: 5px;
+	color: #ffffff;
+	background-color: #2a2a2a;
+	font-size: 14px;
+}
+
+.number-input {
+	height: 25px;
+	width: 4ch;
 	padding: 10px;
 	margin: 10px 0;
 	border: 2px solid #6efe8d;
