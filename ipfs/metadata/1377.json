@@ -1,0 +1,28 @@
+{
+  "image": "ipfs://QmUiqEwdFzHXw7bYBhsLKWBZYBrSSPEcV15g9LB2Gwrqby/1377.png",
+  "tokenId": 1377,
+  "name": "Blockchain Butterflies 1377",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Base",
+      "value": "Ghost"
+    },
+    {
+      "trait_type": "Wing",
+      "value": "Sea"
+    },
+    {
+      "trait_type": "Design",
+      "value": "None"
+    },
+    {
+      "trait_type": "Design Color",
+      "value": "None"
+    }
+  ],
+  "description": "#Blockchain Butterflies \n Fluttering through the blockchain with elegance and color"
+}
