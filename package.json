@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@openzeppelin/contracts": "^5.0.2",
 		"@vercel/blob": "^0.16.1",
 		"ethers": "^6.9.2"
 	}
